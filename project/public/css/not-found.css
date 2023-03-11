@@ -1,0 +1,42 @@
+
+.not-found {
+  position: relative;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+}
+
+.not-found:after {
+  content: '';
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  width: 10px;
+  height: 100vh;
+  display: block;
+  background: #4481c3;
+  transform: translateX(-50%) skew(-6.5deg);
+  transform-origin: center;
+}
+
+.not-found > * {
+  flex: 1 1 0;
+  text-align: center;
+}
+
+
+.not-found__title {
+  margin: 0;
+  font-size: 48px;
+  line-height: 56px;
+  color: transparent;
+  -webkit-text-stroke: 1px #4481c3;
+  letter-spacing: 0.02em;
+}
+
+.not-found__link {
+  font-size: 30px;
+  line-height: 38px;
+  color: #4481c3;
+  text-decoration: underline;
+}
