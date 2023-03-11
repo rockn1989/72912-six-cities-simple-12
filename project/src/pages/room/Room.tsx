@@ -9,22 +9,22 @@ const Room:FC = () => (
         <div className='property__gallery-container container'>
           <div className='property__gallery'>
             <div className='property__image-wrapper'>
-              <img className='property__image' src='img/room.jpg' alt='Photo studio' />
+              <img className='property__image' src='img/room.jpg' alt='studio' />
             </div>
             <div className='property__image-wrapper'>
-              <img className='property__image' src='img/apartment-01.jpg' alt='Photo studio' />
+              <img className='property__image' src='img/apartment-01.jpg' alt='studio' />
             </div>
             <div className='property__image-wrapper'>
-              <img className='property__image' src='img/apartment-02.jpg' alt='Photo studio' />
+              <img className='property__image' src='img/apartment-02.jpg' alt='studio' />
             </div>
             <div className='property__image-wrapper'>
-              <img className='property__image' src='img/apartment-03.jpg' alt='Photo studio' />
+              <img className='property__image' src='img/apartment-03.jpg' alt='studio' />
             </div>
             <div className='property__image-wrapper'>
-              <img className='property__image' src='img/studio-01.jpg' alt='Photo studio' />
+              <img className='property__image' src='img/studio-01.jpg' alt='studio' />
             </div>
             <div className='property__image-wrapper'>
-              <img className='property__image' src='img/apartment-01.jpg' alt='Photo studio' />
+              <img className='property__image' src='img/apartment-01.jpg' alt='studio' />
             </div>
           </div>
         </div>
@@ -154,8 +154,8 @@ const Room:FC = () => (
           <div className='near-places__list places__list'>
             <article className='near-places__card place-card'>
               <div className='near-places__image-wrapper place-card__image-wrapper'>
-                <a href='#'>
-                  <img className='place-card__image' src='img/room.jpg' width='260' height='200' alt='Place image' />
+                <a href='/'>
+                  <img className='place-card__image' src='img/room.jpg' width='260' height='200' alt='Place card' />
                 </a>
               </div>
               <div className='place-card__info'>
@@ -172,7 +172,7 @@ const Room:FC = () => (
                   </div>
                 </div>
                 <h2 className='place-card__name'>
-                  <a href='#'>Wood and stone place</a>
+                  <a href='/'>Wood and stone place</a>
                 </h2>
                 <p className='place-card__type'>Private room</p>
               </div>
@@ -180,8 +180,8 @@ const Room:FC = () => (
 
             <article className='near-places__card place-card'>
               <div className='near-places__image-wrapper place-card__image-wrapper'>
-                <a href='#'>
-                  <img className='place-card__image' src='img/apartment-02.jpg' width='260' height='200' alt='Place image' />
+                <a href='/'>
+                  <img className='place-card__image' src='img/apartment-02.jpg' width='260' height='200' alt='Place card' />
                 </a>
               </div>
               <div className='place-card__info'>
@@ -198,7 +198,7 @@ const Room:FC = () => (
                   </div>
                 </div>
                 <h2 className='place-card__name'>
-                  <a href='#'>Canal View Prinsengracht</a>
+                  <a href='/'>Canal View Prinsengracht</a>
                 </h2>
                 <p className='place-card__type'>Apartment</p>
               </div>
@@ -209,8 +209,8 @@ const Room:FC = () => (
                 <span>Premium</span>
               </div>
               <div className='near-places__image-wrapper place-card__image-wrapper'>
-                <a href='#'>
-                  <img className='place-card__image' src='img/apartment-03.jpg' width='260' height='200' alt='Place image' />
+                <a href='/'>
+                  <img className='place-card__image' src='img/apartment-03.jpg' width='260' height='200' alt='Place card' />
                 </a>
               </div>
               <div className='place-card__info'>
@@ -227,7 +227,7 @@ const Room:FC = () => (
                   </div>
                 </div>
                 <h2 className='place-card__name'>
-                  <a href='#'>Nice, cozy, warm big bed apartment</a>
+                  <a href='/'>Nice, cozy, warm big bed apartment</a>
                 </h2>
                 <p className='place-card__type'>Apartment</p>
               </div>
