@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import { Settings } from './const';
 
+import { offers } from './mocks/offers';
+import { reviews } from './mocks/reviews';
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
 root.render(
   <React.StrictMode>
-    <App cardsCount={Settings.CardsCount} />
+    <App cardsCount={Settings.CardsCount} offers={offers} reviews={reviews} />
   </React.StrictMode>,
 );
