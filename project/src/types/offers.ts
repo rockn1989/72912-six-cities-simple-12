@@ -8,6 +8,15 @@ export type Host = {
   avatarUrl: string;
 }
 
+export type City = {
+  location: {
+    latitude: number;
+    longitude: number;
+    zoom: number;
+  };
+  name: string;
+}
+
 export type Offer = {
   id: number;
   isPremium: boolean;
@@ -22,4 +31,5 @@ export type Offer = {
   maxAdults: number;
   goods: string[];
   host: Host;
+  city: City;
 }

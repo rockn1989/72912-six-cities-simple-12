@@ -1,31 +1,29 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { Offer } from '../../types/offers';
 import Card from '../card/card';
 
 type OffersListProps = {
   offers: Offer[];
+  handleMouseOver: (id: number) => void;
 };
 
-const OffersList:FC<OffersListProps> = ({offers}) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [activeCard, setActiveCard] = useState(0);
+const OffersList:FC<OffersListProps> = ({offers, handleMouseOver}) => {
 
-  return (
-    <div className='cities__places-list places__list tabs__content'>
-      {offers.map(({id, isPremium, previewImage, price, rating, type, title}) => (
-        <Card
-          key={id}
-          id={id}
-          isPremium={isPremium}
-          previewImage={previewImage}
-          price={price}
-          rating={rating}
-          type={type}
-          title={title}
-          onMouseOver={() => setActiveCard(id)}
-        />
-      ))}
-    </div>
-  );
+  const cards = offers.map(({id, isPremium, previewImage, price, rating, type, title, city}) => (
+    <Card
+      key={id}
+      id={id}
+      isPremium={isPremium}
+      previewImage={previewImage}
+      price={price}
+      rating={rating}
+      type={type}
+      title={title}
+      city={city}
+      onMouseOver={() => handleMouseOver(id)}
+    />
+  ));
+
+  return (<div className='cities__places-list places__list tabs__content'>{cards}</div>);
 };
 export default OffersList;

@@ -7,7 +7,7 @@ type CardProps = Omit<Offer, 'images' | 'bedrooms' | 'maxAdults' | 'goods' | 'ho
   onMouseOver: (id: number) => void;
 }
 
-const Card:FC<CardProps> = ({id, isPremium, previewImage, price, rating, type, title, onMouseOver}) => (
+const Card:FC<CardProps> = ({id, isPremium, previewImage, price, rating, type, title, city, onMouseOver}) => (
   <article className='cities__card place-card' onMouseOver={() => onMouseOver(id)}>
     {isPremium && (
       <div className='place-card__mark'>
