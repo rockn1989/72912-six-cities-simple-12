@@ -51,6 +51,13 @@ const Map:FC<MapProps> = ({city, points, selectedCardId}) => {
       });
     }
 
+    return () => {
+      map?.eachLayer((layer) => {
+        if (layer.getPane()?.classList.contains('leaflet-marker-pane')) {
+          layer.remove();
+        }
+      });
+    };
   }, [map, points]);
 
   return (
