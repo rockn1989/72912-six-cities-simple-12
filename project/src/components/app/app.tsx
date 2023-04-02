@@ -10,17 +10,16 @@ import { Review } from '../../types/reviews';
 import { Offer } from '../../types/offers';
 
 type AppProps = {
-  cardsCount: number;
   offers: Offer[];
   reviews: Review[];
 };
 
-const App:FC<AppProps> = ({cardsCount, offers, reviews}) => (
+const App:FC<AppProps> = ({offers, reviews}) => (
   <BrowserRouter>
     <Routes>
       <Route
         path={AppRoute.Root}
-        element={<Main cardsCount={cardsCount} offers={offers} />}
+        element={<Main offers={offers} />}
       />
       <Route
         path={AppRoute.Login}
