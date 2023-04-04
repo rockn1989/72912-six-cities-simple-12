@@ -30,6 +30,13 @@ export enum RadioTitle {
  'perfect'
 }
 
+export enum SortTypes {
+  Popular = 'Popular',
+  LowToHigh = 'Price: low to high',
+  HighToLow = 'Price: high to low',
+  TopRatedFirst = 'Top rated first'
+}
+
 
 export const AVATAR_URL = 'https://i.pravatar.cc/128';
 export const URL_MARKER_DEFAULT = '/img/pin.svg';
