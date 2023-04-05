@@ -25,6 +25,12 @@ export type Offer = {
   price: number;
   type: keyof typeof TypeHousing;
   rating: number;
+  description: string;
+  location: {
+    latitude: number;
+    longitude: number;
+    zoom: number;
+  };
 
   images: string[];
   bedrooms: number;

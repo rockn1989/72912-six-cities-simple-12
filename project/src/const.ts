@@ -30,6 +30,12 @@ export enum RadioTitle {
  'perfect'
 }
 
+export enum Status {
+  LOADING = 'loading',
+  SUCCESS = 'success',
+  ERROR = 'error',
+}
+
 export enum SortTypes {
   Popular = 'Popular',
   LowToHigh = 'Price: low to high',
@@ -37,6 +43,11 @@ export enum SortTypes {
   TopRatedFirst = 'Top rated first'
 }
 
+export const ApiSettings = {
+  BACKEND_URL: 'https://12.react.pages.academy/six-cities-simple',
+  REQUEST_TIMEOUT: 5000,
+  OFFERS_URL: 'hotels'
+} as const;
 
 export const AVATAR_URL = 'https://i.pravatar.cc/128';
 export const URL_MARKER_DEFAULT = '/img/pin.svg';
