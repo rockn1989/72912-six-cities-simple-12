@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { Offer } from '../../types/offers';
 import { setRating } from '../../utils/set-rating';
 
-type CardProps = Omit<Offer, 'images' | 'bedrooms' | 'maxAdults' | 'goods' | 'host'> & {
+type CardProps = Omit<Offer, 'images' | 'bedrooms' | 'maxAdults' | 'goods' | 'host' | 'location' | 'description'> & {
   onMouseOver: (id: number) => void;
 }
 
-const Card:FC<CardProps> = ({id, isPremium, previewImage, price, rating, type, title, city, onMouseOver}) => (
+const Card:FC<CardProps> = ({id, isPremium, previewImage, price, rating, type, title, onMouseOver}) => (
   <article className='cities__card place-card' onMouseOver={() => onMouseOver(id)}>
     {isPremium && (
       <div className='place-card__mark'>

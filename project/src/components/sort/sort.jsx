@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { SortTypes } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { sortOffers } from '../../store/action';
+import { sortOffers } from '../../store/filter/filter';
 
 const Sort = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const selectedSort = useAppSelector((state) => state.sortType);
+  const selectedSort = useAppSelector((state) => state.filter.sortType);
+  const city = useAppSelector((state) => state.offer.city);
   const dispatch = useAppDispatch();
 
   const handleSort = (title: string) => {
-    dispatch(sortOffers(title));
+    dispatch(sortOffers({sortType: title, city}));
   };
 
   const sortList = Object.values(SortTypes).map((sortType) => (
