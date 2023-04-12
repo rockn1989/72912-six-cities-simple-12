@@ -46,8 +46,16 @@ export enum SortTypes {
 export const ApiSettings = {
   BACKEND_URL: 'https://12.react.pages.academy/six-cities-simple',
   REQUEST_TIMEOUT: 5000,
-  OFFERS_URL: 'hotels'
+  OFFERS_URL: 'hotels',
+  LOGIN_URL: 'login',
+  LOGOUT_URL: 'logout'
 } as const;
+
+export enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}
 
 export const AVATAR_URL = 'https://i.pravatar.cc/128';
 export const URL_MARKER_DEFAULT = '/img/pin.svg';
