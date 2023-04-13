@@ -61,7 +61,7 @@ const Map:FC<MapProps> = ({offers, selectedOffer}) => {
   }, [map, offers, selectedOffer]);
 
   return (
-    <section className='cities__map map' ref={mapRef}></section>
+    <section style={{ height: '100%', width: '100%' }} ref={mapRef}></section>
   );
 };
 

@@ -1,7 +1,8 @@
 export enum AppRoute {
   Login = '/login',
   Offer = '/offer',
-  Root = '/'
+  Root = '/',
+  NotFound = '/page-not-found'
 }
 
 
@@ -47,8 +48,10 @@ export const ApiSettings = {
   BACKEND_URL: 'https://12.react.pages.academy/six-cities-simple',
   REQUEST_TIMEOUT: 5000,
   OFFERS_URL: 'hotels',
+  OFFERS_NEARBY_URL: 'nearby',
   LOGIN_URL: 'login',
-  LOGOUT_URL: 'logout'
+  LOGOUT_URL: 'logout',
+  COMMENTS_URL: 'comments',
 } as const;
 
 export enum AuthorizationStatus {
@@ -60,3 +63,5 @@ export enum AuthorizationStatus {
 export const AVATAR_URL = 'https://i.pravatar.cc/128';
 export const URL_MARKER_DEFAULT = '/img/pin.svg';
 export const URL_MARKER_CURRENT = '/img/pin-active.svg';
+export const MAX_REVIEWS_COUNT = 10;
+export const MAX_PHOTO_COUNT = 6;
