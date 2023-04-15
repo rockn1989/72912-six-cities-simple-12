@@ -9,7 +9,7 @@ import { Cities } from '../../mocks/cities';
 import { filterOffers } from '../../store/filter/filter';
 import { Offer } from '../../types/offers';
 import MainEmpty from '../main-empty/main-empty';
-import { Spinner } from '../../components/Spinner/spinner';
+import { Spinner } from '../../components/spinner/spinner';
 
 const Main:FC = () => {
 

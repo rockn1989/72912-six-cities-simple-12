@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchOffer } from '../../store/api-actions';
 import { useParams } from 'react-router-dom';
 import { AuthorizationStatus, MAX_PHOTO_COUNT, MAX_REVIEWS_COUNT, Status } from '../../const';
-import { Spinner } from '../../components/Spinner/spinner';
+import { Spinner } from '../../components/spinner/spinner';
 import { setRating } from '../../utils/set-rating';
 import OffersList from '../../components/offers-list/offers-list';
 import { Offer } from '../../types/offers';

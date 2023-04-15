@@ -36,9 +36,7 @@ const Form:FC = () => {
     });
   };
 
-  const test = async () => {
-    // eslint-disable-next-line no-console
-    console.log(formData);
+  const handleSendReview = async () => {
     if( id ) {
       await dispatch(sendReview({
         offerId: parseInt(id, 10),
@@ -50,8 +48,7 @@ const Form:FC = () => {
 
   const handleSubmit = (evt: React.MouseEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    test();
-
+    handleSendReview();
   };
 
   const radioButtons = new Array(FormSettings.RadioCount).fill('').map((_, index) => <RatingButton key={RadioTitle[index]} index={FormSettings.RadioCount - index} handleInputCheck={handleInputCheck} />);
