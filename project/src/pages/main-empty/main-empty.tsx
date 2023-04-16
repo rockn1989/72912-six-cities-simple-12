@@ -1,8 +1,8 @@
-import { FC } from 'react';
 import { useAppSelector } from '../../hooks';
+import { getSelectedCity } from '../../store/filter/selectors';
 
-const MainEmpty:FC = () => {
-  const selectedCity = useAppSelector((state) => state.filter.city);
+const MainEmpty = () => {
+  const selectedCity = useAppSelector(getSelectedCity);
 
   return (
     <div className='cities__places-container cities__places-container--empty container'>

@@ -1,8 +1,9 @@
+import React from 'react';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setCity } from '../../store/offer/offer';
 import { filterOffers } from '../../store/filter/filter';
+import { getSelectedCity } from '../../store/filter/selectors';
 
 type CitiesListProps = {
   cities: string[];
@@ -10,8 +11,7 @@ type CitiesListProps = {
 
 const CitiesList:FC<CitiesListProps> = ({cities}) => {
   const dispatch = useAppDispatch();
-  const offersAll = useAppSelector((state) => state.offer.offers);
-  const selectedCity = useAppSelector((state) => state.offer.city);
+  const selectedCity = useAppSelector(getSelectedCity);
 
   const citiesList = cities.map((city) => (
     <li key={city} className="locations__item">
@@ -20,11 +20,7 @@ const CitiesList:FC<CitiesListProps> = ({cities}) => {
         'locations__item-link tabs__item'}
       to='/'
       onClick={() => {
-        dispatch(setCity(city));
-        dispatch(filterOffers({
-          offers: offersAll,
-          city
-        }));
+        dispatch(filterOffers(city));
       }}
       >
         <span>{city}</span>
@@ -41,4 +37,4 @@ const CitiesList:FC<CitiesListProps> = ({cities}) => {
   );
 };
 
-export default CitiesList;
+export default React.memo(CitiesList);

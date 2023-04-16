@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FormSettings, RadioTitle } from '../../const';
 import { useAppDispatch } from '../../hooks';
@@ -11,7 +11,7 @@ type FormProps = {
   isActive: boolean;
 }
 
-const Form:FC = () => {
+const Form = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
 
@@ -20,7 +20,6 @@ const Form:FC = () => {
     review: '',
     isActive: false,
   });
-
 
   const handleInputCheck = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({

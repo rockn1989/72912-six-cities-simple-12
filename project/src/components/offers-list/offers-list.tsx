@@ -1,5 +1,9 @@
+import React from 'react';
 import { FC } from 'react';
+import { useAppSelector } from '../../hooks';
+import { getSortType } from '../../store/filter/selectors';
 import { Offer } from '../../types/offers';
+import { sortOffers } from '../../utils/sortOffersByType';
 import Card from '../card/card';
 
 type OffersListProps = {
@@ -9,7 +13,10 @@ type OffersListProps = {
 
 const OffersList:FC<OffersListProps> = ({offers, handleMouseOver}) => {
 
-  const cards = offers.map(({id, isPremium, previewImage, price, rating, type, title, city}) => (
+  const sortType = useAppSelector(getSortType);
+  const sortedOffers = sortOffers(offers, sortType);
+
+  const cards = sortedOffers && sortedOffers.map(({id, isPremium, previewImage, price, rating, type, title, city}) => (
     <Card
       key={id}
       id={id}
@@ -26,4 +33,4 @@ const OffersList:FC<OffersListProps> = ({offers, handleMouseOver}) => {
 
   return (<div className='cities__places-list places__list tabs__content'>{cards}</div>);
 };
-export default OffersList;
+export default React.memo(OffersList);

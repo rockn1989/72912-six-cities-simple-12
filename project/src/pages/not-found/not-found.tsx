@@ -1,8 +1,7 @@
-import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../components/header/header';
 
-const NotFound:FC = () => (
+const NotFound = () => (
   <>
     <Header />
     <div className='not-found container'>

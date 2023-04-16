@@ -1,13 +1,14 @@
-import { FC } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logout } from '../../store/api-actions';
+import { getAuthStatus, getUserData } from '../../store/user/selectors';
 import Logo from '../logo/logo';
 
-const Header:FC = () => {
-  const auth = useAppSelector((state) => state.user.authorizationStatus);
-  const userData = useAppSelector((state) => state.user.userData);
+const Header = () => {
+  const auth = useAppSelector(getAuthStatus);
+  const userData = useAppSelector(getUserData);
   const dispatch = useAppDispatch();
 
   const handleLogOut = (evt: React.MouseEvent<HTMLAnchorElement>) => {
@@ -66,4 +67,4 @@ const Header:FC = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);

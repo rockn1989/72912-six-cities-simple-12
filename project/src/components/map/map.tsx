@@ -7,6 +7,7 @@ import { useAppSelector } from '../../hooks';
 import { getCityData } from '../../utils/getCityData';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 import 'leaflet/dist/leaflet.css';
+import { getSelectedCity } from '../../store/filter/selectors';
 
 type MapProps = {
   offers: Offer[] | undefined;
@@ -15,7 +16,7 @@ type MapProps = {
 
 const Map:FC<MapProps> = ({offers, selectedOffer}) => {
   const mapRef = useRef(null);
-  const selectedCity = useAppSelector((state) => state.filter.city);
+  const selectedCity = useAppSelector(getSelectedCity);
   const city = getCityData(offers, selectedCity);
   const map = useMap(mapRef, city);
 
