@@ -1,39 +1,30 @@
-import { FC, useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useState } from 'react';
+import { useAppSelector } from '../../hooks';
 import Header from '../../components/header/header';
 import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
 import Sort from '../../components/sort/sort';
 import CitiesList from '../../components/cities-list/cities-list';
 import { Cities } from '../../mocks/cities';
-import { filterOffers } from '../../store/filter/filter';
 import { Offer } from '../../types/offers';
 import MainEmpty from '../main-empty/main-empty';
 import { Spinner } from '../../components/spinner/spinner';
+import { getOffersByCity, getOffersAll, getStatus } from '../../store/offer/selectors';
+import { getSelectedCity } from '../../store/filter/selectors';
 
-const Main:FC = () => {
+const Main = () => {
 
   const [activeOffer, setActiveOffer] = useState<Offer | undefined>(undefined);
 
-
-  const dispatch = useAppDispatch();
-  const status = useAppSelector((state) => state.offer.status);
-  const offersAll = useAppSelector((state) => state.offer.offers);
-  const offersByCity = useAppSelector((state) => state.filter.offersByCity);
-  const selectedCity = useAppSelector((state) => state.filter.city);
+  const status = useAppSelector(getStatus);
+  const offersAll = useAppSelector(getOffersAll);
+  const offersByCity = useAppSelector(getOffersByCity);
+  const selectedCity = useAppSelector(getSelectedCity);
 
   const handleMouseOver = (id: number) => {
     const currentOffer = offersAll && offersAll.find((offer) => offer.id === id);
     setActiveOffer(currentOffer);
   };
-
-  useEffect(() => {
-    dispatch(filterOffers({
-      offers: offersAll,
-      city: selectedCity
-    }));
-
-  }, [dispatch, offersAll, selectedCity]);
 
   return (
     <div className='page page--gray page--main'>

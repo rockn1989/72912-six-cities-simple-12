@@ -1,8 +1,7 @@
-import { FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Form from '../../components/review-form/comment-form';
 import Header from '../../components/header/header';
 import Map from '../../components/map/map';
-import ReviewPost from '../../components/review-post/review';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchOffer } from '../../store/api-actions';
 import { useParams } from 'react-router-dom';
@@ -12,13 +11,19 @@ import { setRating } from '../../utils/set-rating';
 import OffersList from '../../components/offers-list/offers-list';
 import { Offer } from '../../types/offers';
 import { sortReviewsByDate } from '../../utils/sortReviewsByDate';
+import { getOfferById, getOffersNearby, getReviewsForOfferById, getStatus } from '../../store/offer/selectors';
+import { getAuthStatus } from '../../store/user/selectors';
+import ReviewsList from '../../components/reviews-list/reviews-list';
 
-const Room:FC = () => {
+const Room = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const [activeOffer, setActiveOffer] = useState<Offer | undefined>(undefined);
-  const {authorizationStatus} = useAppSelector((state) => state.user);
-  const {offerById, offersNearby, reviews, status} = useAppSelector((state) => state.offer);
+  const status = useAppSelector(getStatus);
+  const authorizationStatus = useAppSelector(getAuthStatus);
+  const offerById = useAppSelector(getOfferById);
+  const reviews = useAppSelector(getReviewsForOfferById);
+  const offersNearby = useAppSelector(getOffersNearby);
 
   const lastReviews = reviews.slice().sort(sortReviewsByDate).slice(0, MAX_REVIEWS_COUNT);
 
@@ -41,7 +46,7 @@ const Room:FC = () => {
 
   }, [dispatch, id]);
 
-  if ( status === Status.LOADING) {
+  if ( status === Status.Loading) {
     return <Spinner />;
   }
 
@@ -127,9 +132,7 @@ const Room:FC = () => {
               </div>
               <section className='property__reviews reviews'>
                 <h2 className='reviews__title'>Reviews &middot; <span className='reviews__amount'>{lastReviews && lastReviews.length}</span></h2>
-                <ul className='reviews__list'>
-                  {lastReviews && lastReviews.map(({date, rating, comment, user}) => <ReviewPost key={`${date}-${user.name}`} date={date} rating={rating} comment={comment} user={user} />)}
-                </ul>
+                <ReviewsList reviews={lastReviews} />
                 {authorizationStatus === AuthorizationStatus.Auth && <Form />}
               </section>
             </div>

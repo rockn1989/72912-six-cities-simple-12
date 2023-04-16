@@ -1,14 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Status } from '../../const';
+import { NameSpace, Status } from '../../const';
 import { Offer } from '../../types/offers';
 import { Review } from '../../types/reviews';
 import { fetchOffer, fetchOfferNearby, fetchOffers, fetchReview, sendReview } from '../api-actions';
 
-
-const DEFAULT_CITY = 'Paris';
-
 type InitialState = {
-  city: string;
   offers: Offer[];
   offersNearby: Offer[];
   offerById: Offer | undefined;
@@ -17,21 +13,17 @@ type InitialState = {
 }
 
 const initialState: InitialState = {
-  city: DEFAULT_CITY,
   offers: [],
   offersNearby: [],
   offerById: undefined,
   reviews: [],
-  status: Status.LOADING
+  status: Status.Loading
 };
 
 const offerSlice = createSlice({
-  name: 'offers',
+  name: NameSpace.Offer,
   initialState,
   reducers: {
-    setCity: (state, action: PayloadAction<string>) => {
-      state.city = action.payload;
-    },
     setOffer: (state, action: PayloadAction<Offer[]>) => {
       state.offers = action.payload;
     }
@@ -39,69 +31,66 @@ const offerSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchOffers.pending, (state) => {
       state.offers = [];
-      state.status = Status.LOADING;
-    });
-    builder.addCase(fetchOffers.rejected, (state) => {
-      state.offers = [];
-      state.status = Status.ERROR;
-    });
-    builder.addCase(fetchOffers.fulfilled, (state, action) => {
-      state.offers = action.payload;
-      state.status = Status.SUCCESS;
-    });
+      state.status = Status.Loading;
+    })
+      .addCase(fetchOffers.rejected, (state) => {
+        state.offers = [];
+        state.status = Status.Error;
+      })
+      .addCase(fetchOffers.fulfilled, (state, action) => {
+        state.offers = action.payload;
+        state.status = Status.Success;
+      })
 
-    builder.addCase(fetchOffer.pending, (state) => {
-      state.offerById = undefined;
-      state.status = Status.LOADING;
-    });
-    builder.addCase(fetchOffer.rejected, (state) => {
-      state.offerById = undefined;
-      state.status = Status.ERROR;
-    });
-    builder.addCase(fetchOffer.fulfilled, (state, action) => {
-      state.offerById = action.payload;
-      state.status = Status.SUCCESS;
-    });
+      .addCase(fetchOffer.pending, (state) => {
+        state.status = Status.Loading;
+      })
+      .addCase(fetchOffer.rejected, (state) => {
+        state.offerById = undefined;
+        state.status = Status.Error;
+      })
+      .addCase(fetchOffer.fulfilled, (state, action) => {
+        state.offerById = action.payload;
+        state.status = Status.Success;
+      })
 
-    builder.addCase(fetchOfferNearby.pending, (state) => {
-      state.offersNearby = [];
-      state.status = Status.LOADING;
-    });
-    builder.addCase(fetchOfferNearby.rejected, (state) => {
-      state.offersNearby = [];
-      state.status = Status.ERROR;
-    });
-    builder.addCase(fetchOfferNearby.fulfilled, (state, action) => {
-      state.offersNearby = action.payload;
-      state.status = Status.SUCCESS;
-    });
+      .addCase(fetchOfferNearby.pending, (state) => {
+        state.status = Status.Loading;
+      })
+      .addCase(fetchOfferNearby.rejected, (state) => {
+        state.offersNearby = [];
+        state.status = Status.Error;
+      })
+      .addCase(fetchOfferNearby.fulfilled, (state, action) => {
+        state.offersNearby = action.payload;
+        state.status = Status.Success;
+      })
 
-    builder.addCase(fetchReview.pending, (state) => {
-      state.reviews = [];
-      state.status = Status.LOADING;
-    });
-    builder.addCase(fetchReview.rejected, (state) => {
-      state.reviews = [];
-      state.status = Status.ERROR;
-    });
-    builder.addCase(fetchReview.fulfilled, (state, action) => {
-      state.reviews = action.payload;
-      state.status = Status.SUCCESS;
-    });
+      .addCase(fetchReview.pending, (state) => {
+        state.status = Status.Loading;
+      })
+      .addCase(fetchReview.rejected, (state) => {
+        state.reviews = [];
+        state.status = Status.Error;
+      })
+      .addCase(fetchReview.fulfilled, (state, action) => {
+        state.reviews = action.payload;
+        state.status = Status.Success;
+      })
 
-    builder.addCase(sendReview.pending, (state) => {
-      state.status = Status.LOADING;
-    });
-    builder.addCase(sendReview.rejected, (state) => {
-      state.status = Status.ERROR;
-    });
-    builder.addCase(sendReview.fulfilled, (state, action) => {
-      state.reviews = action.payload;
-      state.status = Status.SUCCESS;
-    });
+      .addCase(sendReview.pending, (state) => {
+        state.status = Status.Loading;
+      })
+      .addCase(sendReview.rejected, (state) => {
+        state.status = Status.Error;
+      })
+      .addCase(sendReview.fulfilled, (state, action) => {
+        state.reviews = action.payload;
+        state.status = Status.Success;
+      });
   },
 });
 
-export const {setCity, setOffer} = offerSlice.actions;
+export const {setOffer} = offerSlice.actions;
 
 export default offerSlice.reducer;

@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
@@ -9,7 +8,7 @@ import Room from '../../pages/room/room';
 import NotFound from '../../pages/not-found/not-found';
 import { AppRoute } from '../../const';
 
-const App:FC = () => (
+const App = () => (
   <HistoryRouter history={browserHistory}>
     <Routes>
       <Route
