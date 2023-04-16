@@ -1,5 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { FormSettings, RadioTitle } from '../../const';
+import { useAppDispatch } from '../../hooks';
+import { sendReview } from '../../store/api-actions';
 import RatingButton from '../rating-button/rating-button';
 
 type FormProps = {
@@ -9,6 +12,9 @@ type FormProps = {
 }
 
 const Form:FC = () => {
+  const { id } = useParams();
+  const dispatch = useAppDispatch();
+
   const [formData, setFormData] = useState<FormProps>({
     rating: 0,
     review: '',
@@ -30,6 +36,21 @@ const Form:FC = () => {
     });
   };
 
+  const handleSendReview = async () => {
+    if( id ) {
+      await dispatch(sendReview({
+        offerId: parseInt(id, 10),
+        comment: formData.review,
+        rating: formData.rating
+      }));
+    }
+  };
+
+  const handleSubmit = (evt: React.MouseEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    handleSendReview();
+  };
+
   const radioButtons = new Array(FormSettings.RadioCount).fill('').map((_, index) => <RatingButton key={RadioTitle[index]} index={FormSettings.RadioCount - index} handleInputCheck={handleInputCheck} />);
 
   useEffect(() => {
@@ -47,7 +68,7 @@ const Form:FC = () => {
   }, [formData.rating, formData.review]);
 
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {radioButtons}

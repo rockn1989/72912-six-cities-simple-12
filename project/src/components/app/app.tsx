@@ -1,19 +1,16 @@
 import { FC } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import HistoryRouter from '../history-route/history-route';
+import browserHistory from '../../browser-history';
 import Main from '../../pages/main/main';
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from '../../pages/login/login';
 import Room from '../../pages/room/room';
 import NotFound from '../../pages/not-found/not-found';
 import { AppRoute } from '../../const';
-import { Review } from '../../types/reviews';
 
-type AppProps = {
-  reviews: Review[];
-};
-
-const App:FC<AppProps> = ({reviews}) => (
-  <BrowserRouter>
+const App:FC = () => (
+  <HistoryRouter history={browserHistory}>
     <Routes>
       <Route
         path={AppRoute.Root}
@@ -25,7 +22,7 @@ const App:FC<AppProps> = ({reviews}) => (
       />
       <Route
         path={`${AppRoute.Offer}/:id`}
-        element={<Room reviews={reviews} />}
+        element={<Room />}
       />
 
       <Route
@@ -33,7 +30,7 @@ const App:FC<AppProps> = ({reviews}) => (
         element={<NotFound />}
       />
     </Routes>
-  </BrowserRouter>
+  </HistoryRouter>
 
 );
 
