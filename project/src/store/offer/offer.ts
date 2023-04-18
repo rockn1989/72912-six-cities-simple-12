@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace, Status } from '../../const';
 import { Offer } from '../../types/offers';
 import { Review } from '../../types/reviews';
@@ -23,18 +23,12 @@ const initialState: InitialState = {
 const offerSlice = createSlice({
   name: NameSpace.Offer,
   initialState,
-  reducers: {
-    setOffer: (state, action: PayloadAction<Offer[]>) => {
-      state.offers = action.payload;
-    }
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchOffers.pending, (state) => {
-      state.offers = [];
       state.status = Status.Loading;
     })
       .addCase(fetchOffers.rejected, (state) => {
-        state.offers = [];
         state.status = Status.Error;
       })
       .addCase(fetchOffers.fulfilled, (state, action) => {
@@ -91,6 +85,5 @@ const offerSlice = createSlice({
   },
 });
 
-export const {setOffer} = offerSlice.actions;
 
 export default offerSlice.reducer;

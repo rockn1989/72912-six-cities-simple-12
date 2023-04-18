@@ -7,30 +7,40 @@ import Login from '../../pages/login/login';
 import Room from '../../pages/room/room';
 import NotFound from '../../pages/not-found/not-found';
 import { AppRoute } from '../../const';
+import PrivateLogin from '../private-login/private-login';
+import { useAppSelector } from '../../hooks';
+import { getAuthStatus } from '../../store/user/selectors';
 
-const App = () => (
-  <HistoryRouter history={browserHistory}>
-    <Routes>
-      <Route
-        path={AppRoute.Root}
-        element={<Main />}
-      />
-      <Route
-        path={AppRoute.Login}
-        element={<Login />}
-      />
-      <Route
-        path={`${AppRoute.Offer}/:id`}
-        element={<Room />}
-      />
+const App = () => {
+  const authStatus = useAppSelector(getAuthStatus);
 
-      <Route
-        path='*'
-        element={<NotFound />}
-      />
-    </Routes>
-  </HistoryRouter>
+  return (
+    <HistoryRouter history={browserHistory}>
+      <Routes>
+        <Route
+          path={AppRoute.Root}
+          element={<Main />}
+        />
+        <Route
+          path={AppRoute.Login}
+          element={
+            <PrivateLogin authorizationStatus={authStatus}>
+              <Login />
+            </PrivateLogin>
+          }
+        />
+        <Route
+          path={`${AppRoute.Offer}/:id`}
+          element={<Room />}
+        />
 
-);
+        <Route
+          path='*'
+          element={<NotFound />}
+        />
+      </Routes>
+    </HistoryRouter>
+  );
+};
 
 export default App;

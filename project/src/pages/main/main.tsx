@@ -5,7 +5,7 @@ import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
 import Sort from '../../components/sort/sort';
 import CitiesList from '../../components/cities-list/cities-list';
-import { Cities } from '../../mocks/cities';
+import { Cities } from '../../const';
 import { Offer } from '../../types/offers';
 import MainEmpty from '../main-empty/main-empty';
 import { Spinner } from '../../components/spinner/spinner';
@@ -21,7 +21,7 @@ const Main = () => {
   const offersByCity = useAppSelector(getOffersByCity);
   const selectedCity = useAppSelector(getSelectedCity);
 
-  const handleMouseOver = (id: number) => {
+  const handleCardMouseOver = (id: number) => {
     const currentOffer = offersAll && offersAll.find((offer) => offer.id === id);
     setActiveOffer(currentOffer);
   };
@@ -48,7 +48,7 @@ const Main = () => {
 
                 <b className='places__found'>{offersByCity.length} places to stay in {selectedCity}</b>
                 <Sort />
-                <OffersList offers={offersByCity} handleMouseOver={handleMouseOver} />
+                <OffersList offers={offersByCity} handleCardMouseOver={handleCardMouseOver} />
 
               </section>
               <div className='cities__right-section'>

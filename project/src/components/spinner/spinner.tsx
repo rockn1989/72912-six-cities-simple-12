@@ -1,8 +1,8 @@
 
-import s from './spinner.module.css';
+import './spinner.css';
 
 const Spinner = () => (
-  <div className={s.ldsRoller}><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+  <div className="ldsRoller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 );
 
 export { Spinner };

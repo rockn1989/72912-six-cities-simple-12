@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import Form from '../../components/review-form/comment-form';
+import { useEffect } from 'react';
+import ReviewForm from '../../components/review-form/review-form';
 import Header from '../../components/header/header';
 import Map from '../../components/map/map';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -9,7 +9,7 @@ import { AuthorizationStatus, MAX_PHOTO_COUNT, MAX_REVIEWS_COUNT, Status } from 
 import { Spinner } from '../../components/spinner/spinner';
 import { setRating } from '../../utils/set-rating';
 import OffersList from '../../components/offers-list/offers-list';
-import { Offer } from '../../types/offers';
+
 import { sortReviewsByDate } from '../../utils/sortReviewsByDate';
 import { getOfferById, getOffersNearby, getReviewsForOfferById, getStatus } from '../../store/offer/selectors';
 import { getAuthStatus } from '../../store/user/selectors';
@@ -18,7 +18,7 @@ import ReviewsList from '../../components/reviews-list/reviews-list';
 const Room = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
-  const [activeOffer, setActiveOffer] = useState<Offer | undefined>(undefined);
+
   const status = useAppSelector(getStatus);
   const authorizationStatus = useAppSelector(getAuthStatus);
   const offerById = useAppSelector(getOfferById);
@@ -26,11 +26,6 @@ const Room = () => {
   const offersNearby = useAppSelector(getOffersNearby);
 
   const lastReviews = reviews.slice().sort(sortReviewsByDate).slice(0, MAX_REVIEWS_COUNT);
-
-  const handleMouseOver = (offerId: number) => {
-    const currentOffer = offersNearby && offersNearby.find((offer) => offer.id === offerId);
-    setActiveOffer(currentOffer);
-  };
 
 
   useEffect(() => {
@@ -133,12 +128,12 @@ const Room = () => {
               <section className='property__reviews reviews'>
                 <h2 className='reviews__title'>Reviews &middot; <span className='reviews__amount'>{lastReviews && lastReviews.length}</span></h2>
                 <ReviewsList reviews={lastReviews} />
-                {authorizationStatus === AuthorizationStatus.Auth && <Form />}
+                {authorizationStatus === AuthorizationStatus.Auth && <ReviewForm />}
               </section>
             </div>
           </div>
           <section className='property__map map'>
-            <Map offers={offerById && [...offersNearby, offerById]} selectedOffer={activeOffer} />
+            <Map offers={offerById && [...offersNearby, offerById]} selectedOffer={offerById} />
           </section>
         </section>
         <div className='container'>
@@ -146,7 +141,7 @@ const Room = () => {
             <h2 className='near-places__title'>Other places in the neighbourhood</h2>
             <div className='near-places__list places__list'>
               {offersNearby.length > 0 ? (
-                <OffersList offers={offersNearby} handleMouseOver={handleMouseOver} />
+                <OffersList offers={offersNearby} />
               ) : (
                 <p>Sorry, no places found nearby</p>
               )}

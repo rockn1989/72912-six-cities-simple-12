@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { DEFAULT_CITY, NameSpace, SortTypes } from '../../const';
+import { DEFAULT_CITY, NameSpace, SortType } from '../../const';
 
 type InitialState = {
   city: string;
@@ -8,7 +8,7 @@ type InitialState = {
 
 const initialState: InitialState = {
   city: DEFAULT_CITY,
-  sortType: SortTypes.Popular,
+  sortType: SortType.Popular,
 };
 
 const filterSlice = createSlice({

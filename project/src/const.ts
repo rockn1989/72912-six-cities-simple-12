@@ -5,14 +5,10 @@ export enum AppRoute {
   NotFound = '/page-not-found'
 }
 
-export enum Settings {
-  CardsCount = 25
-}
-
-export enum FormSettings {
+export enum FormSetting {
   MinValueLength = 50,
   MaxValueLength = 300,
-  RadioCount = 5
+  RadioCount = 5,
 }
 
 export enum NameSpace {
@@ -28,7 +24,7 @@ export enum TypeHousing {
   'hotel'
 }
 
-export enum RadioTitle {
+export enum RatingTitle {
  'terribly',
  'badly',
  'not bad',
@@ -36,13 +32,24 @@ export enum RadioTitle {
  'perfect'
 }
 
+
+export const Cities = [
+  'Paris',
+  'Cologne',
+  'Brussels',
+  'Amsterdam',
+  'Hamburg',
+  'Dusseldorf'
+];
+
+
 export enum Status {
   Loading = 'loading',
   Success = 'success',
   Error = 'error',
 }
 
-export enum SortTypes {
+export enum SortType {
   Popular = 'Popular',
   LowToHigh = 'Price: low to high',
   HighToLow = 'Price: high to low',
@@ -71,3 +78,4 @@ export const URL_MARKER_CURRENT = '/img/pin-active.svg';
 export const MAX_REVIEWS_COUNT = 10;
 export const MAX_PHOTO_COUNT = 6;
 export const DEFAULT_CITY = 'Paris';
+export const PASSWORD_REG_EXP = new RegExp(/^(?=.*[a-zA-Z])(?=.*[0-9]).+$/);

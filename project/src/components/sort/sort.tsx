@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SortTypes } from '../../const';
+import { SortType } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { sortOffers } from '../../store/filter/filter';
 import { getSortType } from '../../store/filter/selectors';
@@ -9,16 +9,16 @@ const Sort = () => {
   const selectedSort = useAppSelector(getSortType);
   const dispatch = useAppDispatch();
 
-  const handleSort = (title: string) => {
+  const handleOptionClick = (title: string) => {
     dispatch(sortOffers(title));
   };
 
-  const sortList = Object.values(SortTypes).map((sortType) => (
+  const sortList = Object.values(SortType).map((sortType) => (
     <li
       key={sortType}
       className={`places__option ${sortType === selectedSort ? 'places__option--active' : ''}`}
       tabIndex={0}
-      onClick={() => handleSort(sortType)}
+      onClick={() => handleOptionClick(sortType)}
     >{sortType}
     </li>
   ));
