@@ -1,6 +1,6 @@
 
 import React, { FC, Fragment } from 'react';
-import { RadioTitle } from '../../const';
+import { FormSetting, RatingTitle } from '../../const';
 
 type RatingButtonProps = {
   index: number;
@@ -8,9 +8,9 @@ type RatingButtonProps = {
 }
 
 const RatingButton:FC<RatingButtonProps> = ({index, handleInputCheck}) => (
-  <Fragment key={RadioTitle[5 - index]}>
+  <Fragment key={RatingTitle[FormSetting.RadioCount - index]}>
     <input className="form__rating-input visually-hidden" name="rating" value={index} id={`${index}-stars`} type="radio" onChange={handleInputCheck} />
-    <label htmlFor={`${index}-stars`} className="reviews__rating-label form__rating-label" title={RadioTitle[index]}>
+    <label htmlFor={`${index}-stars`} className="reviews__rating-label form__rating-label" title={RatingTitle[index - 1]}>
       <svg className="form__star-image" width="37" height="33">
         <use xlinkHref="#icon-star"></use>
       </svg>

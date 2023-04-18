@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { FormSettings, RadioTitle } from '../../const';
+import { FormSetting, RatingTitle } from '../../const';
 import { useAppDispatch } from '../../hooks';
 import { sendReview } from '../../store/api-actions';
 import RatingButton from '../rating-button/rating-button';
 
-type FormProps = {
+type ReviewFormProps = {
   rating: number;
   review: string;
   isActive: boolean;
 }
 
-const Form = () => {
+const ReviewForm = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
 
-  const [formData, setFormData] = useState<FormProps>({
+  const [formData, setFormData] = useState<ReviewFormProps>({
     rating: 0,
     review: '',
     isActive: false,
@@ -35,7 +35,7 @@ const Form = () => {
     });
   };
 
-  const handleSendReview = async () => {
+  const sendReviewData = async () => {
     if( id ) {
       await dispatch(sendReview({
         offerId: parseInt(id, 10),
@@ -45,15 +45,15 @@ const Form = () => {
     }
   };
 
-  const handleSubmit = (evt: React.MouseEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    handleSendReview();
+    sendReviewData();
   };
 
-  const radioButtons = new Array(FormSettings.RadioCount).fill('').map((_, index) => <RatingButton key={RadioTitle[index]} index={FormSettings.RadioCount - index} handleInputCheck={handleInputCheck} />);
+  const radioButtons = new Array(FormSetting.RadioCount).fill('').map((_, index) => <RatingButton key={RatingTitle[index]} index={FormSetting.RadioCount - index} handleInputCheck={handleInputCheck} />);
 
   useEffect(() => {
-    if (formData.rating !== 0 && (formData.review.length >= FormSettings.MinValueLength && formData.review.length <= FormSettings.MaxValueLength)) {
+    if (formData.rating !== 0 && (formData.review.length >= FormSetting.MinValueLength && formData.review.length <= FormSetting.MaxValueLength)) {
       setFormData((oldFormData) => ({
         ...oldFormData,
         isActive: true
@@ -67,7 +67,7 @@ const Form = () => {
   }, [formData.rating, formData.review]);
 
   return (
-    <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
+    <form className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {radioButtons}
@@ -83,4 +83,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default ReviewForm;

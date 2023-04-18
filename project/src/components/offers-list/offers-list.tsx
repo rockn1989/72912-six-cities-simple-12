@@ -8,10 +8,10 @@ import Card from '../card/card';
 
 type OffersListProps = {
   offers: Offer[];
-  handleMouseOver: (id: number) => void;
+  handleCardMouseOver?: (id: number) => void;
 };
 
-const OffersList:FC<OffersListProps> = ({offers, handleMouseOver}) => {
+const OffersList:FC<OffersListProps> = ({offers, handleCardMouseOver}) => {
 
   const sortType = useAppSelector(getSortType);
   const sortedOffers = sortOffers(offers, sortType);
@@ -27,7 +27,7 @@ const OffersList:FC<OffersListProps> = ({offers, handleMouseOver}) => {
       type={type}
       title={title}
       city={city}
-      onMouseOver={() => handleMouseOver(id)}
+      onMouseOver={() => handleCardMouseOver && handleCardMouseOver(id)}
     />
   ));
 

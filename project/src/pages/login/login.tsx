@@ -1,10 +1,12 @@
 import { FormEvent, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../../components/logo/logo';
-import { AppRoute } from '../../const';
+import { AppRoute, Cities, PASSWORD_REG_EXP } from '../../const';
 import { useAppDispatch } from '../../hooks';
 import { login } from '../../store/api-actions';
+import { filterOffers } from '../../store/filter/filter';
 import { AuthData } from '../../types/auth-data';
+import { getRandomCity } from '../../utils/getRandomCity';
 
 const Login = () => {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -13,11 +15,13 @@ const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const randomCity = getRandomCity(Cities);
+
   const onSubmit = (authData: AuthData) => {
     dispatch(login(authData));
   };
 
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     if (loginRef.current !== null && passwordRef.current !== null) {
       onSubmit({
@@ -27,6 +31,17 @@ const Login = () => {
 
       navigate(AppRoute.Root);
     }
+  };
+
+  const handleInputPasswordChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    let validityMessage = '';
+
+    if (!PASSWORD_REG_EXP.test(target.value)) {
+      validityMessage = 'Please enter at least one letter and one digit';
+    }
+
+    target.setCustomValidity(validityMessage);
+    target.reportValidity();
   };
 
   return (
@@ -42,22 +57,30 @@ const Login = () => {
         <div className='page__login-container container'>
           <section className='login'>
             <h1 className='login__title'>Sign in</h1>
-            <form className='login__form form' action='#' method='post' onSubmit={handleSubmit}>
+            <form className='login__form form' action='#' method='post' onSubmit={handleFormSubmit}>
               <div className='login__input-wrapper form__input-wrapper'>
                 <label className='visually-hidden'>E-mail</label>
                 <input className='login__input form__input' type='email' name='email' placeholder='Email' required ref={loginRef} />
               </div>
               <div className='login__input-wrapper form__input-wrapper'>
                 <label className='visually-hidden'>Password</label>
-                <input className='login__input form__input' type='password' name='password' placeholder='Password' required ref={passwordRef} />
+                <input className='login__input form__input' type='password' name='password' placeholder='Password' required ref={passwordRef} onChange={(evt) => {
+                  handleInputPasswordChange(evt);
+                }}
+                />
               </div>
               <button className='login__submit form__submit button' type='submit'>Sign in</button>
             </form>
           </section>
           <section className='locations locations--login locations--current'>
             <div className='locations__item'>
-              <Link className='locations__item-link' to='/'>
-                <span>Amsterdam</span>
+              <Link className='locations__item-link'
+                to='/'
+                onClick={() => {
+                  dispatch(filterOffers(randomCity));
+                }}
+              >
+                <span>{ randomCity }</span>
               </Link>
             </div>
           </section>

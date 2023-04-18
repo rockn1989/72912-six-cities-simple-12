@@ -1,4 +1,4 @@
-import { SortTypes } from '../const';
+import { SortType } from '../const';
 import { Offer } from '../types/offers';
 
 const sortPriceDown = (offerA:Offer, offerB:Offer) => offerA.price - offerB.price;
@@ -7,11 +7,11 @@ const sortTopRatedFirst = (offerA:Offer, offerB:Offer) => offerB.rating - offerA
 
 const sortOffers = (offers: Offer[], sortType: string) => {
   switch(sortType) {
-    case SortTypes.LowToHigh:
+    case SortType.LowToHigh:
       return offers && offers.slice().sort(sortPriceDown);
-    case SortTypes.HighToLow:
+    case SortType.HighToLow:
       return offers && offers.slice().sort(sortPriceUp);
-    case SortTypes.TopRatedFirst:
+    case SortType.TopRatedFirst:
       return offers && offers.slice().sort(sortTopRatedFirst);
     default:
       return offers;
