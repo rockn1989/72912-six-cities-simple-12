@@ -14,7 +14,7 @@ const CitiesList:FC<CitiesListProps> = ({cities}) => {
   const selectedCity = useAppSelector(getSelectedCity);
 
   const citiesList = cities.map((city) => (
-    <li key={city} className="locations__item">
+    <li key={city} className="locations__item" data-testid="cities-list__item">
       <Link className={selectedCity === city ?
         'locations__item-link tabs__item tabs__item--active' :
         'locations__item-link tabs__item'}

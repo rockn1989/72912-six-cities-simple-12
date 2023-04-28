@@ -6,7 +6,7 @@ import { useAppDispatch } from '../../hooks';
 import { login } from '../../store/api-actions';
 import { filterOffers } from '../../store/filter/filter';
 import { AuthData } from '../../types/auth-data';
-import { getRandomCity } from '../../utils/getRandomCity';
+import { getRandomCity } from '../../utils/get-random-city';
 
 const Login = () => {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -57,19 +57,19 @@ const Login = () => {
         <div className='page__login-container container'>
           <section className='login'>
             <h1 className='login__title'>Sign in</h1>
-            <form className='login__form form' action='#' method='post' onSubmit={handleFormSubmit}>
+            <form className='login__form form' action='#' method='post' onSubmit={handleFormSubmit} data-testid='signin-form'>
               <div className='login__input-wrapper form__input-wrapper'>
-                <label className='visually-hidden'>E-mail</label>
-                <input className='login__input form__input' type='email' name='email' placeholder='Email' required ref={loginRef} />
+                <label className='visually-hidden' htmlFor="emailId">E-mail</label>
+                <input className='login__input form__input' id="emailId" type='email' name='email' placeholder='Email' required ref={loginRef} data-testid="email" />
               </div>
               <div className='login__input-wrapper form__input-wrapper'>
-                <label className='visually-hidden'>Password</label>
-                <input className='login__input form__input' type='password' name='password' placeholder='Password' required ref={passwordRef} onChange={(evt) => {
+                <label className='visually-hidden' htmlFor="passwordId">Password</label>
+                <input className='login__input form__input' id="passwordId" type='password' name='password' placeholder='Password' required ref={passwordRef} data-testid="password" onChange={(evt) => {
                   handleInputPasswordChange(evt);
                 }}
                 />
               </div>
-              <button className='login__submit form__submit button' type='submit'>Sign in</button>
+              <button className='login__submit form__submit button' type='submit' data-testid="signin-button">Sign in</button>
             </form>
           </section>
           <section className='locations locations--login locations--current'>

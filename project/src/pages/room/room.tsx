@@ -10,7 +10,7 @@ import { Spinner } from '../../components/spinner/spinner';
 import { setRating } from '../../utils/set-rating';
 import OffersList from '../../components/offers-list/offers-list';
 
-import { sortReviewsByDate } from '../../utils/sortReviewsByDate';
+import { sortReviewsByDate } from '../../utils/sort-reviews-by-date';
 import { getOfferById, getOffersNearby, getReviewsForOfferById, getStatus } from '../../store/offer/selectors';
 import { getAuthStatus } from '../../store/user/selectors';
 import ReviewsList from '../../components/reviews-list/reviews-list';

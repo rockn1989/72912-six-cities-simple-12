@@ -8,7 +8,7 @@ type CardProps = Omit<Offer, 'images' | 'bedrooms' | 'maxAdults' | 'goods' | 'ho
 }
 
 const Card:FC<CardProps> = ({id, isPremium, previewImage, price, rating, type, title, onMouseOver}) => (
-  <article className='cities__card place-card' onMouseOver={() => onMouseOver(id)}>
+  <article data-testid="place-card-container" className='cities__card place-card' onMouseOver={() => onMouseOver(id)}>
     {isPremium && (
       <div className='place-card__mark'>
         <span>Premium</span>
@@ -26,7 +26,7 @@ const Card:FC<CardProps> = ({id, isPremium, previewImage, price, rating, type, t
     <div className='place-card__info'>
       <div className='place-card__price-wrapper'>
         <div className='place-card__price'>
-          <b className='place-card__price-value'>&euro; {price}</b>
+          <b className='place-card__price-value' data-testid='place-card-price'>&euro; {price}</b>
           <span className='place-card__price-text'>&#47;&nbsp;night</span>
         </div>
 
@@ -38,7 +38,7 @@ const Card:FC<CardProps> = ({id, isPremium, previewImage, price, rating, type, t
         </div>
       </div>
       <h2 className='place-card__name'>
-        <Link to={`/offer/${id}`}>{title}</Link>
+        <Link to={`/offer/${id}`} data-testid='place-card-title'>{title}</Link>
       </h2>
       <p className='place-card__type'>{type}</p>
     </div>

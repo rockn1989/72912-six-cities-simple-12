@@ -67,17 +67,17 @@ const ReviewForm = () => {
   }, [formData.rating, formData.review]);
 
   return (
-    <form className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit}>
+    <form className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit} data-testid='review-form'>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {radioButtons}
       </div>
-      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" value={formData.review} onChange={handleTextAreaChange}></textarea>
+      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" value={formData.review} onChange={handleTextAreaChange} data-testid='review-id'></textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
         To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled={!formData.isActive}>Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={!formData.isActive} data-testid='review-button'>Submit</button>
       </div>
     </form>
   );

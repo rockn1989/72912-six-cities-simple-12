@@ -2,9 +2,9 @@
 import { FC, useEffect, useRef } from 'react';
 import {Icon, Marker} from 'leaflet';
 import { Offer } from '../../types/offers';
-import useMap from '../../hooks/useMap';
+import useMap from '../../hooks/use-map';
 import { useAppSelector } from '../../hooks';
-import { getCityData } from '../../utils/getCityData';
+import { getCityData } from '../../utils/get-city-data';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 import 'leaflet/dist/leaflet.css';
 import { getSelectedCity } from '../../store/filter/selectors';
@@ -62,7 +62,7 @@ const Map:FC<MapProps> = ({offers, selectedOffer}) => {
   }, [map, offers, selectedOffer]);
 
   return (
-    <section style={{ height: '100%', width: '100%' }} ref={mapRef}></section>
+    <section style={{ height: '100%', width: '100%' }} ref={mapRef} data-testid='map-block'></section>
   );
 };
 

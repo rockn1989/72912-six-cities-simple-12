@@ -1,5 +1,3 @@
-import { TypeHousing } from '../const';
-
 
 export type Host = {
   id: number;
@@ -23,7 +21,7 @@ export type Offer = {
   title: string;
   previewImage: string;
   price: number;
-  type: keyof typeof TypeHousing;
+  type: string;
   rating: number;
   description: string;
   location: {

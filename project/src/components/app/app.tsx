@@ -1,6 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-import HistoryRouter from '../history-route/history-route';
-import browserHistory from '../../browser-history';
 import Main from '../../pages/main/main';
 
 import Login from '../../pages/login/login';
@@ -15,31 +13,29 @@ const App = () => {
   const authStatus = useAppSelector(getAuthStatus);
 
   return (
-    <HistoryRouter history={browserHistory}>
-      <Routes>
-        <Route
-          path={AppRoute.Root}
-          element={<Main />}
-        />
-        <Route
-          path={AppRoute.Login}
-          element={
-            <PrivateLogin authorizationStatus={authStatus}>
-              <Login />
-            </PrivateLogin>
-          }
-        />
-        <Route
-          path={`${AppRoute.Offer}/:id`}
-          element={<Room />}
-        />
+    <Routes>
+      <Route
+        path={AppRoute.Root}
+        element={<Main />}
+      />
+      <Route
+        path={AppRoute.Login}
+        element={
+          <PrivateLogin authorizationStatus={authStatus}>
+            <Login />
+          </PrivateLogin>
+        }
+      />
+      <Route
+        path={`${AppRoute.Offer}/:id`}
+        element={<Room />}
+      />
 
-        <Route
-          path='*'
-          element={<NotFound />}
-        />
-      </Routes>
-    </HistoryRouter>
+      <Route
+        path='*'
+        element={<NotFound />}
+      />
+    </Routes>
   );
 };
 

@@ -17,13 +17,6 @@ export enum NameSpace {
   Filter = 'FILTER'
 }
 
-export enum TypeHousing {
-  'apartment',
-  'room',
-  'house',
-  'hotel'
-}
-
 export enum RatingTitle {
  'terribly',
  'badly',

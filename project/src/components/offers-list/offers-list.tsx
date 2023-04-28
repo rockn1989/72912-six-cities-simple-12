@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { useAppSelector } from '../../hooks';
 import { getSortType } from '../../store/filter/selectors';
 import { Offer } from '../../types/offers';
-import { sortOffers } from '../../utils/sortOffersByType';
+import { sortOffers } from '../../utils/sort-offers-by-type';
 import Card from '../card/card';
 
 type OffersListProps = {
@@ -31,6 +31,6 @@ const OffersList:FC<OffersListProps> = ({offers, handleCardMouseOver}) => {
     />
   ));
 
-  return (<div className='cities__places-list places__list tabs__content'>{cards}</div>);
+  return (<div className='cities__places-list places__list tabs__content' data-testid='places-list'>{cards}</div>);
 };
 export default React.memo(OffersList);
