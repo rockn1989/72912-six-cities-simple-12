@@ -50,7 +50,7 @@ export enum SortType {
 }
 
 export const ApiSettings = {
-  BACKEND_URL: 'https://12.react.pages.academy/six-cities-simple',
+  BACKEND_URL: 'https://12.react.htmlacademy.pro/six-cities-simple/',
   REQUEST_TIMEOUT: 5000,
   OFFERS_URL: 'hotels',
   OFFERS_NEARBY_URL: 'nearby',
